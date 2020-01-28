@@ -4,12 +4,12 @@ const app = express();
 
 app.use(express.static("client/public"));
 
-app.listen(2020, () => {
-  console.log("Listening on port 2020")
+app.listen(3003, () => {
+  console.log("Listening on port 3003")
 });
 
-app.get('/videos', (req, res) => {
-  db.retrieveCarousel((err, result) => {
+app.get('/videos/:userId', (req, res) => {
+  db.retrieveCarousel(req.params.userId, (err, result) => {
     if (err) {
       console.error(err);
     } else {

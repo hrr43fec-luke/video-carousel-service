@@ -5,7 +5,7 @@ var db = mongoose.connection;
 
 var Schema = mongoose.Schema;
 var carousel = new Schema({
-  user : { id: {type: Number, unique: true}, username: String},
+  user : {id: Number, username: String},
   videos: [{
       id: {type: Number, unique: true},
       title: String,
@@ -40,8 +40,8 @@ var deleteCarousel = (callback) => {
   });
 }
 
-var retrieveCarousel = (callback) => {
-  Carousel.find({}, (err, result) => {
+var retrieveCarousel = (userId, callback) => {
+  Carousel.find({'user.id': userId}, (err, result) => {
     if (err) {
       return handleError(err);
     } else {

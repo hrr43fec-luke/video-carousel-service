@@ -48,9 +48,10 @@ var videoUrls = [
 
 categories = ['Featured', 'Past Broadcasts', 'Past Premieres', 'Collections'];
 
-var generateFakeData = (callback) => {
+var generateFakeData = () => {
   var carousel = {};
   carousel.user = {};
+  carousel.user.id = 1;
   carousel.user.username = faker.internet.userName();
   var videos = []
   var video;
@@ -66,7 +67,7 @@ var generateFakeData = (callback) => {
     videos.push(video);
   }
   carousel.videos = videos;
-  callback(null, carousel);
+  return carousel;
 
 }
 
