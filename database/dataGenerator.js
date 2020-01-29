@@ -1,6 +1,6 @@
-var faker = require('faker');
+const faker = require('faker');
 
-var thumbnailsUrls = [
+const thumbnailsUrls = [
   'https://unsplash.com/photos/o4c2zoVhjSw',
   'https://unsplash.com/photos/Sb2FkPFiadg',
   'https://unsplash.com/photos/_R95VMWyn7A',
@@ -20,10 +20,10 @@ var thumbnailsUrls = [
   'https://unsplash.com/photos/zZ6uR3uJriM',
   'https://unsplash.com/photos/zufXg9Zc9Ig',
   'https://unsplash.com/photos/MAqmEdUCq4k',
-  'https://unsplash.com/photos/s7PhRjUJNeA'
+  'https://unsplash.com/photos/s7PhRjUJNeA',
 ];
 
-var videoUrls = [
+const videoUrls = [
   'https://www.youtube.com/watch?v=o0Ks1ySNkD0',
   'https://www.youtube.com/watch?v=blpWr7_822o',
   'https://www.youtube.com/watch?v=KF4hH8wUXWw',
@@ -43,32 +43,31 @@ var videoUrls = [
   'https://www.youtube.com/watch?v=RBMaC_xcbs8',
   'https://www.youtube.com/watch?v=ViZ3_Juu0Yw',
   'https://www.youtube.com/watch?v=ce4yBeqPj9w',
-  'https://www.youtube.com/watch?v=6uG9vtckp1U'
+  'https://www.youtube.com/watch?v=6uG9vtckp1U',
 ];
 
-categories = ['Featured', 'Past Broadcasts', 'Past Premieres', 'Collections'];
+const categories = ['Featured', 'Past Broadcasts', 'Past Premieres', 'Collections'];
 
-var generateFakeData = () => {
-  var carousel = {};
+const generateFakeData = () => {
+  const carousel = {};
   carousel.user = {};
   carousel.user.id = 1;
   carousel.user.username = faker.internet.userName();
-  var videos = []
-  var video;
-  for (var i = 0; i < 100; i++) {
+  const videos = [];
+  let video;
+  for (let i = 0; i < 100; i += 1) {
     video = {};
     video.title = faker.lorem.words();
     video.description = faker.lorem.sentence();
-    video.created_at =  faker.date.past();
+    video.created_at = faker.date.past();
     video.view_count = faker.random.number();
-    video.thumbnail = thumbnailsUrls[Math.floor(Math.random() * categories.length)]
+    video.thumbnail = thumbnailsUrls[Math.floor(Math.random() * categories.length)];
     video.url = videoUrls[Math.floor(Math.random() * videoUrls.length)];
-    video.category =  categories[Math.floor(Math.random() * categories.length)];
+    video.category = categories[Math.floor(Math.random() * categories.length)];
     videos.push(video);
   }
   carousel.videos = videos;
   return carousel;
-
-}
+};
 
 module.exports = generateFakeData;
