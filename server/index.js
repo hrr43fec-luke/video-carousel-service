@@ -1,11 +1,13 @@
-const db = require('../database/index.js');
+/* eslint-disable no-console */
 const express = require('express');
+const db = require('../database/index.js');
+
 const app = express();
 
-app.use(express.static("client/public"));
+app.use(express.static('client/public'));
 
 app.listen(3003, () => {
-  console.log("Listening on port 3003")
+  console.log('Listening on port 3003');
 });
 
 app.get('/videos/:userId', (req, res) => {
@@ -18,5 +20,4 @@ app.get('/videos/:userId', (req, res) => {
   });
 });
 
-
-
+module.exports = app;
