@@ -1,0 +1,30 @@
+
+  ::-webkit-scrollbar {
+    -webkit-appearance: none;
+    width: 11px;
+    height: 11px;
+  }
+
+.slider {
+  /* line them up horizontally */
+  display: flex;
+
+  /* allow for scrolling */
+  overflow-x: scroll;
+
+  /* make it smooth on iOS
+  -webkit-overflow-scrolling: touch; */
+
+  /* max-width: 1000px;
+  max-height: 300px; */
+
+}
+
+.slider > div {
+  /* make sure the width is honored */
+  flex-shrink: 0;
+  width: 300px;
+  height: 300px;
+  padding: 2%;
+}
+
