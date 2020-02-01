@@ -1,4 +1,5 @@
 /* eslint-disable import/extensions */
+
 import './styles.css';
 
 import React from 'react';

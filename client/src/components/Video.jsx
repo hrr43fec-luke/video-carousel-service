@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const Video = ({ video }) => (
-  <div>
+  <div className="videoEntry">
     <img src={video.thumbnail} alt=" " />
     <span className="title"><h5>{video.title}</h5></span>
   </div>
