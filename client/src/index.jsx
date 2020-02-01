@@ -1,7 +1,11 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
+/* eslint-disable import/extensions */
+import './styles.css';
+
+import React from 'react';
+import ReactDOM from 'react-dom';
+import App from './components/App.jsx';
 
 ReactDOM.render(
-  "Hello World",
-  document.getElementById('hello')
+  <App />,
+  document.getElementById('app'),
 );
