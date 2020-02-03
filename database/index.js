@@ -13,7 +13,8 @@ const carousel = new Schema({
     view_count: Number,
     thumbnail: String,
     url: String,
-    category: String,
+    category: { id: Number, name: String },
+    game: { id: Number, name: String, thumbnail: String },
   }],
 });
 
