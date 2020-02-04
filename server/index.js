@@ -19,7 +19,18 @@ app.get('/videos/:userId', (req, res) => {
     if (err) {
       console.error(err);
     } else {
-      res.json(helper.getSomeVideos(result));
+      res.json(helper.getVideosByCategories(result));
+    }
+  });
+});
+
+app.get('/filter/:userId/:categoryId', (req, res) => {
+  console.log(req.params);
+  db.retrieveCarousel(req.params.userId, (err, result) => {
+    if (err) {
+      console.error(err);
+    } else {
+      res.json(helper.getVideosByCategories(result, parseInt(req.params.categoryId, 10)));
     }
   });
 });

@@ -46,7 +46,9 @@ const videoUrls = [
   'https://www.youtube.com/watch?v=6uG9vtckp1U',
 ];
 
-const categories = ['Featured', 'Past Broadcasts', 'Past Premieres', 'Collections'];
+const categories = [[1, 'Featured'], [2, 'Past Broadcasts'], [3, 'Past Premieres'], [4, 'Collections']];
+
+const games = [[1, 'Fortnite', 'https://static-cdn.jtvnw.net/ttv-boxart/Fortnite-40x56.jpg']];
 
 const generateFakeData = () => {
   const carousel = {};
@@ -57,13 +59,25 @@ const generateFakeData = () => {
   let video;
   for (let i = 0; i < 100; i += 1) {
     video = {};
+    video.game = {};
     video.title = faker.lorem.words();
     video.description = faker.lorem.sentence();
     video.created_at = faker.date.past();
     video.view_count = faker.random.number();
     video.thumbnail = thumbnailsUrls[Math.floor(Math.random() * categories.length)];
     video.url = videoUrls[Math.floor(Math.random() * videoUrls.length)];
-    video.category = categories[Math.floor(Math.random() * categories.length)];
+
+    const [categoryId, categoryName] = categories[Math.floor(Math.random() * categories.length)];
+    video.category = {};
+    video.category.id = categoryId;
+    video.category.name = categoryName;
+
+    const [gameId, gameName, gameThumbnail] = games[0];
+    video.game = {};
+    video.game.id = gameId;
+    video.game.name = gameName;
+    video.game.thumbnail = gameThumbnail;
+
     videos.push(video);
   }
   carousel.videos = videos;

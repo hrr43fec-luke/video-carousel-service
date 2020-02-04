@@ -1,12 +1,174 @@
-.slider {
-  display: flex;
-  overflow-x: auto;
-  max-width: 1000px;
-  max-height: 300px;
+body {
+  color: white;
+  font-family: Roobert,Helvetica Neue,Helvetica,Arial,sans-serif!important;
 }
 
-.slider > div {
-  width: 300px;
-  height: 300px;
-  padding: 2%;
+#container {
+  display: flex;
+  width: 65%;
+  height: 50%;
+  overflow-x: hidden;
+  float: left;
+  margin-left: 2rem;
+  background-color: black;
+  margin-left: 15%;
 }
+
+#container > div {
+  padding: 1%;
+}
+
+.title {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.video {
+  margin-top: 5px;
+}
+
+.video-image {
+  margin-top: 10px;
+  width: 18%;
+  float: left;
+}
+
+.video-title {
+  width: 70%;
+  float: left;
+}
+
+.right {
+  position:fixed;
+  overflow: hidden;
+  left:77%;
+  top: 27%;
+  border-color: blueviolet;
+  border-width: 3px;
+}
+
+#circle1:hover {
+  fill: #3a3a3d;
+}
+
+#circle2:hover {
+  fill: #3a3a3d;
+}
+
+.left {
+  position:fixed;
+  overflow: hidden;
+  top: 27%;
+  left: 13%;
+}
+
+
+.custom-select-wrapper {
+  margin-left: 15%;
+  user-select: none;
+  width: 12rem;
+  height: 5rem;
+  color:white;
+}
+
+.custom-select-wrapper.open {
+  border-color: #9147ff;
+}
+
+.custom-select {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  border-width: 0 2px 0 2px;
+  border-style: solid;
+  border-color: #323234;
+  border-radius: 3px;
+}
+.custom-select__trigger {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: white;
+  height: 35px;
+  line-height: 50px;
+  background: #323234;
+  cursor: pointer;
+  border-width: 2px 0 2px 0;
+  border-style: solid;
+  border-color: #323234;
+  box-sizing: border-box;
+}
+
+.custom-select.open {
+  border-color: #9147ff
+}
+
+.custom-options {
+  position: absolute;
+  display: block;
+  top: 100%;
+  left: 0;
+  right: 0;
+  border: 2px solid #18181b;
+  border-top: 0;
+  background: #18181b;
+  transition: all 0.5s;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.custom-select.open .custom-options {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: all;
+}
+.custom-option {
+  position: relative;
+  display: block;
+  padding: 0 4px 0 4px;
+  font-size: 15px;
+  font-weight: 300;
+  color:white;
+  line-height: 60px;
+  cursor: pointer;
+  transition: all 0.5s;
+}
+
+.custom-option:hover {
+  cursor: pointer;
+  background-color: #9147ff;
+}
+.custom-option.selected {
+  color: #ffffff;
+  background-color: #3a3a3d;
+}
+.arrow {
+  position: relative;
+  height: 12px;
+  width: 12px;
+}
+.arrow::before, .arrow::after {
+  content: "";
+  position: absolute;
+  bottom: 0px;
+  width: 0.15rem;
+  height: 100%;
+  transition: all 0.5s;
+}
+.arrow::before {
+  left: -6px;
+  transform: rotate(-45deg);
+  background-color: white;
+}
+.arrow::after {
+  left: 2px;
+  transform: rotate(45deg);
+  background-color: white;
+}
+
