@@ -1,11 +1,11 @@
-/* eslint-disable class-methods-use-this */
-/* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable class-methods-use-this */
 /* eslint-disable import/extensions */
+
 import React from 'react';
 import Video from './Video.jsx';
 import Filter from './Filter.jsx';
-
 
 class App extends React.Component {
   constructor(props) {
@@ -14,19 +14,19 @@ class App extends React.Component {
     this.state.username = '';
     this.state.videos = [];
     this.state.currentCategory = 'Featured';
+    this.state.isVisible = false;
 
     this.handleOnRightClick = this.handleOnRightClick.bind(this);
     this.handleOnLeftClick = this.handleOnLeftClick.bind(this);
 
     this.handleOnChange = this.handleOnChange.bind(this);
+    this.handleOnClickMenu = this.handleOnClickMenu.bind(this);
+    this.setWrapperRef = this.setWrapperRef.bind(this);
+    // this.handleClickOutside = this.handleClickOutside.bind(this);
   }
 
   componentDidMount() {
-    document.querySelector('.custom-select-wrapper')
-      .addEventListener('click', function () {
-        this.querySelector('.custom-select').classList.toggle('open');
-        this.querySelector('.custom-select__trigger').classList.toggle('open');
-      });
+    // document.addEventListener('mousedown', this.handleClickOutside);
 
     const videoId = 1;
     fetch(`videos/${videoId}`)
@@ -39,10 +39,20 @@ class App extends React.Component {
       });
   }
 
+  /* componentWillUnmount() {
+    document.removeEventListener('mousedown', this.handleClickOutside);
+  } */
+
+  setWrapperRef(node) {
+    console.log('inside wrapper');
+    this.wrapperRef = node;
+    console.log(node);
+  }
+
   handleOnChange(e) {
-    const select = document.querySelector('.custom-select');
-    if (!select.contains(e.target)) {
-      select.classList.remove('open');
+    const stateObj = this.state;
+    if (stateObj.isVisible) {
+      this.setState({ isVisible: true });
     }
 
     const userId = 1;
@@ -66,6 +76,21 @@ class App extends React.Component {
     document.getElementById('container').scrollLeft -= 50;
   }
 
+  handleOnClickMenu() {
+    const stateObj = this.state;
+    const isVisible = !stateObj.isVisible;
+    this.setState({ isVisible });
+  }
+
+  /* handleClickOutside(event) {
+    console.log('here outside');
+    console.log('handle node', this.wrapperRef);
+    if (this.wrapperRef && !this.wrapperRef.contains(event.target)) {
+      this.setState({
+        isVisible: false,
+      });
+    }
+  } */
 
   render() {
     const stateObj = this.state;
@@ -75,7 +100,13 @@ class App extends React.Component {
     return (
       <div>
         <div>
-          <Filter onClick={this.handleOnChange} currentCategory={stateObj.currentCategory} />
+          <Filter
+            onClickOption={this.handleOnChange}
+            currentCategory={stateObj.currentCategory}
+            onClickMenu={this.handleOnClickMenu}
+            isVisible={stateObj.isVisible}
+            // ref={this.setWrapperRef}
+          />
         </div>
         <div id="container">
           <div className="left" onClick={this.handleOnLeftClick}>
