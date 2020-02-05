@@ -23,6 +23,10 @@ body {
   font-weight: bold;
 }
 
+ .video-entry:hover {
+  border: 10px solid #9147ff;
+}
+
 .video {
   margin-top: 5px;
 }
@@ -38,30 +42,47 @@ body {
   float: left;
 }
 
-.right {
+.right.visible {
   position:fixed;
   overflow: hidden;
   left:77%;
   top: 27%;
-  border-color: blueviolet;
-  border-width: 3px;
+  opacity: 10;
 }
 
-#circle1:hover {
-  fill: #3a3a3d;
+.left.visible {
+  position:fixed;
+  overflow: hidden;
+  top: 27%;
+  left: 13%;
+  opacity: 10;
 }
 
-#circle2:hover {
-  fill: #3a3a3d;
+.right.invisible {
+  visibility: hidden;
+  opacity: 10;
+  position:fixed;
+  overflow: hidden;
+  left:77%;
+  top: 27%;
 }
 
-.left {
+.left.invisible {
+  visibility: hidden;
+  opacity: 10;
   position:fixed;
   overflow: hidden;
   top: 27%;
   left: 13%;
 }
 
+#circle1:hover {
+  fill:darkseagreen;
+}
+
+#circle2:hover {
+  fill: darkseagreen;
+}
 
 .custom-select-wrapper {
   margin-left: 15%;
@@ -103,10 +124,6 @@ body {
   box-sizing: border-box;
 }
 
-.custom-select.open {
-  border-color: #9147ff
-}
-
 .custom-options {
   position: absolute;
   display: block;
@@ -121,6 +138,10 @@ body {
   visibility: hidden;
   pointer-events: none;
   z-index: 2;
+}
+
+.custom-select.open {
+  border-color: #9147ff
 }
 
 .custom-select.open .custom-options {

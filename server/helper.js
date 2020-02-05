@@ -1,26 +1,13 @@
-/* const getSomeVideos = (carousel) => {
-  const newCarousel = {};
-  const videos = [];
-  newCarousel.user = {};
-  newCarousel.user.id = carousel[0].user.id;
-  newCarousel.user.username = carousel[0].user.username;
-  for (let i = 0; i < 6; i += 1) {
-    videos.push(carousel[0].videos[i]);
-  }
-  newCarousel.videos = videos;
-  return newCarousel;
-}; */
-
 
 const getVideosByCategories = (carousel, category = 1) => {
+
   const newCarousel = {};
   const videos = [];
-  newCarousel.user = {};
-  newCarousel.user.id = carousel[0].user.id;
-  newCarousel.user.username = carousel[0].user.username;
-  for (let i = 0; i < 50; i += 1) {
-    if (carousel[0].videos[i].category.id === category) {
-      videos.push(carousel[0].videos[i]);
+  newCarousel.videoId = carousel.videoId;
+  const inputVideos = carousel.videos;
+  for (let i = 0; i < inputVideos.length; i += 1) {
+    if (inputVideos[i].category.id === category) {
+      videos.push(carousel.videos[i]);
     }
   }
   newCarousel.videos = videos;
@@ -28,6 +15,6 @@ const getVideosByCategories = (carousel, category = 1) => {
 };
 
 module.exports = {
-  // getSomeVideos,
+
   getVideosByCategories,
 };

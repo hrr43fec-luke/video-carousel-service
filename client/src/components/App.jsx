@@ -1,3 +1,4 @@
+/* eslint-disable import/order */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable class-methods-use-this */
@@ -7,33 +8,38 @@ import React from 'react';
 import Video from './Video.jsx';
 import Filter from './Filter.jsx';
 
+import PropTypes from 'prop-types';
+
+const scrollDistance = 680;
+
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
-    this.state.username = '';
     this.state.videos = [];
     this.state.currentCategory = 'Featured';
     this.state.isVisible = false;
+    this.state.videoId = props.videoId;
+    this.state.rightCircleIsVisible = true;
+    this.state.leftCircleIsVisible = false;
 
     this.handleOnRightClick = this.handleOnRightClick.bind(this);
     this.handleOnLeftClick = this.handleOnLeftClick.bind(this);
 
     this.handleOnChange = this.handleOnChange.bind(this);
     this.handleOnClickMenu = this.handleOnClickMenu.bind(this);
-    this.setWrapperRef = this.setWrapperRef.bind(this);
+    // this.setWrapperRef = this.setWrapperRef.bind(this);
     // this.handleClickOutside = this.handleClickOutside.bind(this);
   }
 
   componentDidMount() {
     // document.addEventListener('mousedown', this.handleClickOutside);
 
-    const videoId = 1;
+    const { videoId } = this.state;
     fetch(`videos/${videoId}`)
       .then((response) => response.json())
       .then((data) => {
         this.setState({
-          username: data.user.username,
           videos: data.videos,
         });
       });
@@ -43,11 +49,9 @@ class App extends React.Component {
     document.removeEventListener('mousedown', this.handleClickOutside);
   } */
 
-  setWrapperRef(node) {
-    console.log('inside wrapper');
+  /* setWrapperRef(node) {
     this.wrapperRef = node;
-    console.log(node);
-  }
+  } */
 
   handleOnChange(e) {
     const stateObj = this.state;
@@ -55,13 +59,12 @@ class App extends React.Component {
       this.setState({ isVisible: true });
     }
 
-    const userId = 1;
+    const { videoId } = this.state;
     const categoryId = e.target.value;
-    fetch(`filter/${userId}/${categoryId}`)
+    fetch(`filter/${videoId}/${categoryId}`)
       .then((response) => response.json())
       .then((data) => {
         this.setState({
-          username: data.user.username,
           videos: data.videos,
           currentCategory: data.videos[0].category.name,
         });
@@ -69,17 +72,30 @@ class App extends React.Component {
   }
 
   handleOnRightClick() {
-    document.getElementById('container').scrollLeft += 50;
+    const oldScroll = document.getElementById('container').scrollLeft;
+    document.getElementById('container').scrollLeft += scrollDistance;
+
+    if (document.getElementById('container').scrollLeft === oldScroll) {
+      this.setState({ rightCircleIsVisible: false });
+    }
+
+    if (document.getElementById('container').scrollLef !== 0) {
+      this.setState({ leftCircleIsVisible: true });
+    }
   }
 
   handleOnLeftClick() {
-    document.getElementById('container').scrollLeft -= 50;
+    document.getElementById('container').scrollLeft -= scrollDistance;
+
+    if (document.getElementById('container').scrollLeft === 0) {
+      this.setState({ leftCircleIsVisible: false });
+    }
+    this.setState({ rightCircleIsVisible: true });
   }
 
   handleOnClickMenu() {
-    const stateObj = this.state;
-    const isVisible = !stateObj.isVisible;
-    this.setState({ isVisible });
+    const { isVisible } = this.state;
+    this.setState({ isVisible: !isVisible });
   }
 
   /* handleClickOutside(event) {
@@ -93,30 +109,32 @@ class App extends React.Component {
   } */
 
   render() {
-    const stateObj = this.state;
+    const { state } = this;
     const rightArrow = '<';
     const leftArrow = '>';
+    const { rightCircleIsVisible, leftCircleIsVisible } = this.state;
+    const right = rightCircleIsVisible ? 'right visible' : 'right invisible';
+    const left = leftCircleIsVisible ? 'left visible' : 'left invisible';
 
     return (
       <div>
         <div>
           <Filter
             onClickOption={this.handleOnChange}
-            currentCategory={stateObj.currentCategory}
+            currentCategory={state.currentCategory}
             onClickMenu={this.handleOnClickMenu}
-            isVisible={stateObj.isVisible}
-            // ref={this.setWrapperRef}
+            isVisible={state.isVisible}
           />
         </div>
         <div id="container">
-          <div className="left" onClick={this.handleOnLeftClick}>
+          <div className={left} onClick={this.handleOnLeftClick}>
             <svg height="50" width="50">
               <circle id="circle1" cx="25" cy="25" fill="#18181b" r="25" />
               <text fill="#9147ff" fontFamily="Arial" fontSize="30px" x="35%" y="68%">{rightArrow}</text>
             </svg>
           </div>
-          {stateObj.videos.map((video) => <Video video={video} />)}
-          <div className="right" onClick={this.handleOnRightClick}>
+          {state.videos.map((video) => <Video video={video} />)}
+          <div className={right} onClick={this.handleOnRightClick}>
             <svg height="50" width="50">
               <circle id="circle2" cx="25" cy="25" fill="#18181b" r="25" />
               <text fill="#9147ff" fontFamily="Arial" fontSize="30px" x="35%" y="68%">{leftArrow}</text>
@@ -128,4 +146,7 @@ class App extends React.Component {
   }
 }
 
+App.propTypes = {
+  videoId: PropTypes.number.isRequired,
+};
 export default App;
