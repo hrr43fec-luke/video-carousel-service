@@ -13,9 +13,9 @@ app.listen(3003, () => {
   console.log('Listening on port 3003');
 });
 
-app.get('/videos/:userId', (req, res) => {
+app.get('/videos/:videoId', (req, res) => {
   console.log(req.params);
-  db.retrieveCarousel(req.params.userId, (err, result) => {
+  db.retrieveCarousel(req.params.videoId, (err, result) => {
     if (err) {
       console.error(err);
     } else {
@@ -24,9 +24,9 @@ app.get('/videos/:userId', (req, res) => {
   });
 });
 
-app.get('/filter/:userId/:categoryId', (req, res) => {
+app.get('/filter/:videoId/:categoryId', (req, res) => {
   console.log(req.params);
-  db.retrieveCarousel(req.params.userId, (err, result) => {
+  db.retrieveCarousel(req.params.videoId, (err, result) => {
     if (err) {
       console.error(err);
     } else {

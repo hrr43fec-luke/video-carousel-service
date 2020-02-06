@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 const Video = ({ video }) => (
   <div className="videoEntry">
-    <img src={video.thumbnail} alt=" " />
+    <a href={video.url}><img src={video.thumbnail} alt=" " /></a>
     <div className="video">
       <div className="video-image">
         <img src={video.game.thumbnail} alt=" " />
@@ -20,6 +20,7 @@ Video.propTypes = {
   video: PropTypes.shape({
     thumbnail: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
+    url: PropTypes.string.isRequired,
     game: PropTypes.shape({
       thumbnail: PropTypes.string.isRequired,
       name: PropTypes.string.isRequired,

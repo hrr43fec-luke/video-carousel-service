@@ -6,7 +6,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './components/App.jsx';
 
+const videoId = window.location.search.slice(1) || 1;
+
 ReactDOM.render(
-  <App />,
+  <App videoId={videoId} />,
   document.getElementById('app'),
 );

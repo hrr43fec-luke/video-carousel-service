@@ -1,12 +1,12 @@
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb://localhost/carouselvideo', { useNewUrlParser: true });
+mongoose.connect('mongodb://localhost/carouselvideo', { useNewUrlParser: true, useUnifiedTopology: true });
 
 const { Schema } = mongoose;
 const carousel = new Schema({
-  user: { id: Number, username: String },
+  videoId: Number,
   videos: [{
-    id: { type: Number, unique: true },
+    username: String,
     title: String,
     description: String,
     created_at: Date,
@@ -20,8 +20,8 @@ const carousel = new Schema({
 
 const Carousel = mongoose.model('Carousel', carousel);
 
-const saveCarousel = (newCarousel, callback) => {
-  Carousel.create(newCarousel, (err, result) => {
+const saveCarousel = (carousels, callback) => {
+  Carousel.create(carousels, (err, result) => {
     if (err) {
       callback(err);
     } else {
@@ -31,7 +31,7 @@ const saveCarousel = (newCarousel, callback) => {
 };
 
 const deleteCarousel = (callback) => {
-  Carousel.deleteOne({}, (err, result) => {
+  Carousel.deleteMany({}, (err, result) => {
     if (err) {
       callback(err);
     }
@@ -39,8 +39,8 @@ const deleteCarousel = (callback) => {
   });
 };
 
-const retrieveCarousel = (userId, callback) => {
-  Carousel.find({ 'user.id': userId }, (err, result) => {
+const retrieveCarousel = (videoId, callback) => {
+  Carousel.findOne({ videoId }, (err, result) => {
     if (err) {
       callback(err);
     }
