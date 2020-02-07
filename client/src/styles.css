@@ -59,7 +59,7 @@ body {
 }
 
 .right.invisible {
-  visibility: visible;
+  visibility: hidden;
   position: relative;
   opacity: 10;
   top: 55px;
@@ -67,7 +67,7 @@ body {
 }
 
 .left.invisible {
-  visibility: visible;
+  visibility: hidden;
   opacity: 10;
   position: relative;
   top: 55px;
