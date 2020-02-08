@@ -4,7 +4,7 @@ module.exports = {
   entry: './client/src/index.jsx',
   output: {
     path: path.resolve(__dirname, './client/public'),
-    filename: 'bundle.js',
+    filename: 'carousel.js',
   },
   module: {
     rules: [
