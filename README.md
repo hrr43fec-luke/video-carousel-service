@@ -4,7 +4,7 @@
 FEC Project | Hack Reactor
 
 ## Setup
-To run this project, create a .env file in the root directory with the following:
+To run this project, create a .env file in the root directory with the following environment-specific variables:
 
 PORT= 3003
 DB_URL='mongodb://localhost/channels'
@@ -28,9 +28,4 @@ $ npm run seed # populating database
 Run nodemon
 ```
 $ npm start:dev
-```
-
-
-
-``
 ```
