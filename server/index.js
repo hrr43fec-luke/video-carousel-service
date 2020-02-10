@@ -2,14 +2,16 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const db = require('../database/index.js');
+require('dotenv').config()
 const helper = require('./helper.js');
+
 
 const app = express();
 
 app.use(express.static('client/public'));
 app.use(bodyParser.json());
 
-app.listen(3003, () => {
+app.listen(process.env.PORT, () => {
   console.log('Listening on port 3003');
 });
 

@@ -10,5 +10,5 @@ const videoId = window.location.search.slice(1) || 1;
 
 ReactDOM.render(
   <App videoId={videoId} />,
-  document.getElementById('app'),
+  document.getElementById('carousel'),
 );
