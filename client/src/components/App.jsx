@@ -1,14 +1,11 @@
-/* eslint-disable import/order */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
-/* eslint-disable class-methods-use-this */
-/* eslint-disable import/extensions */
 
 import React from 'react';
-import Video from './Video.jsx';
-import Filter from './Filter.jsx';
-
 import PropTypes from 'prop-types';
+import Video from './Video';
+import Filter from './Filter';
+
 
 const scrollDistance = 680;
 
@@ -28,13 +25,9 @@ class App extends React.Component {
 
     this.handleOnChange = this.handleOnChange.bind(this);
     this.handleOnClickMenu = this.handleOnClickMenu.bind(this);
-    // this.setWrapperRef = this.setWrapperRef.bind(this);
-    // this.handleClickOutside = this.handleClickOutside.bind(this);
   }
 
   componentDidMount() {
-    // document.addEventListener('mousedown', this.handleClickOutside);
-
     const { videoId } = this.state;
     fetch(`videos/${videoId}`)
       .then((response) => response.json())
@@ -44,14 +37,6 @@ class App extends React.Component {
         });
       });
   }
-
-  /* componentWillUnmount() {
-    document.removeEventListener('mousedown', this.handleClickOutside);
-  } */
-
-  /* setWrapperRef(node) {
-    this.wrapperRef = node;
-  } */
 
   handleOnChange(e) {
     const stateObj = this.state;
@@ -97,16 +82,6 @@ class App extends React.Component {
     const { isVisible } = this.state;
     this.setState({ isVisible: !isVisible });
   }
-
-  /* handleClickOutside(event) {
-    console.log('here outside');
-    console.log('handle node', this.wrapperRef);
-    if (this.wrapperRef && !this.wrapperRef.contains(event.target)) {
-      this.setState({
-        isVisible: false,
-      });
-    }
-  } */
 
   render() {
     const { state } = this;
