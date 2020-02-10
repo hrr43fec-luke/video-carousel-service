@@ -3,15 +3,17 @@ body {
   font-family: Roobert,Helvetica Neue,Helvetica,Arial,sans-serif!important;
 }
 
+#app {
+  display: flex;
+  flex-direction: column;
+}
+
 #container {
   display: flex;
-  width: 65%;
-  height: 50%;
   overflow-x: hidden;
-  float: left;
-  margin-left: 2rem;
   background-color: black;
-  margin-left: 15%;
+  border: solid 10px;
+  border-color: #0e0e10;
 }
 
 #container > div {
@@ -43,37 +45,33 @@ body {
 }
 
 .right.visible {
-  position:fixed;
-  overflow: hidden;
-  left:77%;
-  top: 27%;
+  position: relative;
+  top: 55px;
   opacity: 10;
+  height: 60px;
 }
 
 .left.visible {
-  position:fixed;
-  overflow: hidden;
-  top: 27%;
-  left: 13%;
+  position: relative;
+  top: 55px;
   opacity: 10;
+  height: 60px;
 }
 
 .right.invisible {
   visibility: hidden;
+  position: relative;
   opacity: 10;
-  position:fixed;
-  overflow: hidden;
-  left:77%;
-  top: 27%;
+  top: 55px;
+  height: 60px;
 }
 
 .left.invisible {
   visibility: hidden;
   opacity: 10;
-  position:fixed;
-  overflow: hidden;
-  top: 27%;
-  left: 13%;
+  position: relative;
+  top: 55px;
+  height: 60px;
 }
 
 #circle1:hover {

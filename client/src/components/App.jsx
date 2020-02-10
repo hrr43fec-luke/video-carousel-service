@@ -72,22 +72,22 @@ class App extends React.Component {
   }
 
   handleOnRightClick() {
-    const oldScroll = document.getElementById('container').scrollLeft;
-    document.getElementById('container').scrollLeft += scrollDistance;
+    const oldScroll = document.getElementById('scrollMe').scrollLeft;
+    document.getElementById('scrollMe').scrollLeft += scrollDistance;
 
-    if (document.getElementById('container').scrollLeft === oldScroll) {
+    if (document.getElementById('scrollMe').scrollLeft === oldScroll) {
       this.setState({ rightCircleIsVisible: false });
     }
 
-    if (document.getElementById('container').scrollLef !== 0) {
+    if (document.getElementById('scrollMe').scrollLef !== 0) {
       this.setState({ leftCircleIsVisible: true });
     }
   }
 
   handleOnLeftClick() {
-    document.getElementById('container').scrollLeft -= scrollDistance;
+    document.getElementById('scrollMe').scrollLeft -= scrollDistance;
 
-    if (document.getElementById('container').scrollLeft === 0) {
+    if (document.getElementById('scrollMe').scrollLeft === 0) {
       this.setState({ leftCircleIsVisible: false });
     }
     this.setState({ rightCircleIsVisible: true });
@@ -118,22 +118,22 @@ class App extends React.Component {
 
     return (
       <div>
-        <div>
-          <Filter
-            onClickOption={this.handleOnChange}
-            currentCategory={state.currentCategory}
-            onClickMenu={this.handleOnClickMenu}
-            isVisible={state.isVisible}
-          />
-        </div>
-        <div id="container">
+        <Filter
+          onClickOption={this.handleOnChange}
+          currentCategory={state.currentCategory}
+          onClickMenu={this.handleOnClickMenu}
+          isVisible={state.isVisible}
+        />
+        <div id="container" style={{ display: 'flex' }}>
           <div className={left} onClick={this.handleOnLeftClick}>
             <svg height="50" width="50">
               <circle id="circle1" cx="25" cy="25" fill="#18181b" r="25" />
               <text fill="#9147ff" fontFamily="Arial" fontSize="30px" x="35%" y="68%">{rightArrow}</text>
             </svg>
           </div>
-          {state.videos.map((video) => <Video video={video} />)}
+          <div id="scrollMe" style={{ display: 'flex', overflow: 'hidden' }}>
+            {state.videos.map((video) => <Video video={video} />)}
+          </div>
           <div className={right} onClick={this.handleOnRightClick}>
             <svg height="50" width="50">
               <circle id="circle2" cx="25" cy="25" fill="#18181b" r="25" />
