@@ -17,7 +17,7 @@ const Filter = ({
         </div>
         <div className="custom-options">
           <option className="custom-option selected" onClick={onClickOption} value="1">Featured</option>
-          <option className="custom-option" onClick={onClickOption} value="2">Broadcast</option>
+          <option className="custom-option" onClick={onClickOption} value="2">Past Broadcast</option>
           <option className="custom-option" onClick={onClickOption} value="3">Past Premiere</option>
         </div>
       </div>

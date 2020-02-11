@@ -2,18 +2,23 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const db = require('../database/index.js');
-require('dotenv').config()
+require('dotenv').config();
 const helper = require('./helper.js');
 
-
+const { PORT } = process.env;
 const app = express();
 
 app.use(express.static('client/public'));
 app.use(bodyParser.json());
 
-app.listen(process.env.PORT, () => {
-  console.log('Listening on port 3003');
-});
+db.connect()
+  .then(() => {
+    app.listen(PORT, () => {
+      console.log(`Listening on port ${PORT}`);
+    });
+  }).catch((err) => {
+    console.error(err);
+  });
 
 app.get('/videos/:videoId', (req, res) => {
   console.log(req.params);

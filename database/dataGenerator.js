@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 const faker = require('faker');
 
 const thumbnailsUrls = [
@@ -83,13 +82,8 @@ const generateFakeData = () => {
     carousel.videos = videos;
     carousels.push(carousel);
   }
-  // console.log(carousels[0]);
-  // console.log(carousels.length);
 
   return carousels;
 };
-
-// generateFakeData();
-
 
 module.exports = generateFakeData;
