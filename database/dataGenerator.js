@@ -19,6 +19,9 @@ const thumbnailsUrls = [
   'https://static-cdn.jtvnw.net/s3_vods/bde90a9b857ec2119389_mrfreshasian_36764553440_1366536917/thumb/thumb0-320x180.jpg',
   'https://static-cdn.jtvnw.net/s3_vods/16c0e5c1c882b2df3b5b_mrfreshasian_36737437552_1364840441/thumb/thumb0-320x180.jpg',
   'https://static-cdn.jtvnw.net/s3_vods/67a4ead0a62096f2bc7c_ninja_with_no_l_36779488384_1367471336/thumb/thumb0-320x180.jpg',
+  'https://static-cdn.jtvnw.net/cf_vods/d2nvs31859zcd8/4b917f291621afecef1d_darktyranus148_36898039872_1374887676/thumb/thumb0-320x180.jpg',
+  'https://static-cdn.jtvnw.net/cf_vods/d2nvs31859zcd8/37f3d5d79b71adef6706_darktyranus148_14225683148_1664831659//thumb/thumb534016730-320x180.jpg',
+  'https://static-cdn.jtvnw.net/cf_vods/d2nvs31859zcd8/0c8af35d43f77228d666_aprylanonymous_36844659904_1371548328/thumb/thumb0-320x180.jpg',
 ];
 
 const videoUrls = [
@@ -63,7 +66,7 @@ const generateFakeData = () => {
       video.description = faker.lorem.sentence();
       video.created_at = faker.date.past();
       video.view_count = faker.random.number();
-      video.thumbnail = thumbnailsUrls[Math.floor(Math.random() * categories.length)];
+      video.thumbnail = thumbnailsUrls[Math.floor(Math.random() * thumbnailsUrls.length)];
       video.url = videoUrls[Math.floor(Math.random() * videoUrls.length)];
 
       const [categoryId, categoryName] = categories[Math.floor(Math.random() * categories.length)];

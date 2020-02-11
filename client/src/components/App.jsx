@@ -3,8 +3,8 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import Video from './Video';
-import Filter from './Filter';
+import Video from './Video.jsx';
+import Filter from './Filter.jsx';
 
 
 const scrollDistance = 680;
@@ -99,14 +99,14 @@ class App extends React.Component {
           onClickMenu={this.handleOnClickMenu}
           isVisible={state.isVisible}
         />
-        <div id="container" style={{ display: 'flex' }}>
+        <div id="container">
           <div className={left} onClick={this.handleOnLeftClick}>
             <svg height="50" width="50">
               <circle id="circle1" cx="25" cy="25" fill="#18181b" r="25" />
               <text fill="#9147ff" fontFamily="Arial" fontSize="30px" x="35%" y="68%">{rightArrow}</text>
             </svg>
           </div>
-          <div id="scrollMe" style={{ display: 'flex', overflow: 'hidden' }}>
+          <div id="scrollMe">
             {state.videos.map((video) => <Video video={video} />)}
           </div>
           <div className={right} onClick={this.handleOnRightClick}>

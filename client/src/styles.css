@@ -11,12 +11,14 @@ body {
 #container {
   display: flex;
   overflow-x: hidden;
-  background-color: black;
+  background-color: #0e0e10;
   border: solid 10px;
   border-color: #0e0e10;
 }
 
-#container > div {
+#scrollMe {
+  display: flex;
+  overflow: hidden;
   padding: 1%;
 }
 
@@ -25,7 +27,11 @@ body {
   font-weight: bold;
 }
 
- .video-entry:hover {
+.videoEntry {
+  padding: 1%
+}
+
+.video-entry:hover {
   border: 10px solid #9147ff;
 }
 
@@ -83,7 +89,7 @@ body {
 }
 
 .custom-select-wrapper {
-  margin-left: 15%;
+  margin-left: 11%;
   user-select: none;
   width: 12rem;
   height: 5rem;

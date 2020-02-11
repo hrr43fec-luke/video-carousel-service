@@ -5,20 +5,15 @@ const db = require('../database/index.js');
 require('dotenv').config();
 const helper = require('./helper.js');
 
-const { PORT } = process.env;
 const app = express();
 
 app.use(express.static('client/public'));
 app.use(bodyParser.json());
 
-db.connect()
-  .then(() => {
-    app.listen(PORT, () => {
-      console.log(`Listening on port ${PORT}`);
-    });
-  }).catch((err) => {
-    console.error(err);
-  });
+app.listen(process.env.PORT, () => {
+  console.log('Listening on port 3003');
+});
+
 
 app.get('/videos/:videoId', (req, res) => {
   console.log(req.params);

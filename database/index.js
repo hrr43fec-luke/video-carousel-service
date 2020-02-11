@@ -1,8 +1,7 @@
 require('dotenv').config();
 const mongoose = require('mongoose');
 
-const connect = () => mongoose.connect(process.env.DB_URL,
-  { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(process.env.DB_URL, { useNewUrlParser: true, useUnifiedTopology: true });
 
 const { Schema } = mongoose;
 const carousel = new Schema({
@@ -23,6 +22,7 @@ const carousel = new Schema({
 const Carousel = mongoose.model('Carousel', carousel);
 
 const saveCarousel = (carousels, callback) => {
+  console.log(carousels);
   Carousel.create(carousels, (err, result) => {
     if (err) {
       callback(err);
@@ -54,5 +54,4 @@ module.exports = {
   saveCarousel,
   deleteCarousel,
   retrieveCarousel,
-  connect,
 };
