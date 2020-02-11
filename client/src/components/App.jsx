@@ -64,7 +64,7 @@ class App extends React.Component {
       this.setState({ rightCircleIsVisible: false });
     }
 
-    if (document.getElementById('scrollMe').scrollLef !== 0) {
+    if (document.getElementById('scrollMe').scrollLeft !== 0) {
       this.setState({ leftCircleIsVisible: true });
     }
   }
