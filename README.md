@@ -1,16 +1,18 @@
-## video-carousel-service
+# video-carousel-service
 
-# General info
+## General info
 FEC Project | Hack Reactor
 
 ## Setup
 To run this project, create a .env file in the root directory with the following environment-specific variables:
 
-PORT= 3003
-DB_URL='mongodb://localhost/channels'
+PORT= 3003\
+
+DB_URL='mongodb://localhost/channels'\
+
 DB_NAME=channels
 
-Install it locally using npm:
+Install it locally using npm
 ```
 $ npm install
 ```
